@@ -1,0 +1,18 @@
+<div class="start-screen">
+    <div class="bgImg">
+        <img src="/assets/img/startBG.jpg" alt="" sizes="" srcset="">
+    </div>
+    <div class="title-animation">
+        <span class="title">RING OF FIRE</span>
+    </div>
+    <span (click)="newGame()" class="starttext">Start the Game</span>
+    <svg>
+        <filter id="wave">
+            <feTurbulence x="0" y="0" baseFrequency="0.009" numOctaves="5" seed="2">
+                <animate attributeName="baseFrequency" dur="60s" values="0.02;0.005;0.02" repeatCount="indefinite">
+                </animate>
+            </feTurbulence>
+            <feDisplacementMap in="SourceGraphic" scale="10"></feDisplacementMap>
+        </filter>
+    </svg>
+</div>

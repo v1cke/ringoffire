@@ -1,0 +1,40 @@
+.playground{
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    background-image: url('/assets/img/background.jpg');
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-stack{
+    position: relative;
+    img{
+        position: absolute;
+        height: 250px;
+        width: auto;
+        cursor: pointer;
+    }
+}
+
+.pick-Card{
+    animation: pick-card-animation 1s ease-in-out;
+    transform: scale(1.5) translateX(140px) translateY(-180px) rotate(-10deg);
+}
+
+@keyframes pick-card-animation {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.7);
+    }
+    50% {
+        transform: scale(1.7);
+    }
+    100% {
+        transform: scale(1.5) translateX(140px) translateY(-180px) rotate(-10deg);
+    }
+}
