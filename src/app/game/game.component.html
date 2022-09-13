@@ -1,7 +1,20 @@
 <div class="playground">
+    <div class="circle"></div>
+    <svg>
+        <filter id="wavy">
+            <feTurbulence x="0" y="0" baseFrequency="0.1" numOctaves="5" seed="2"> 
+                <animate attributeName="baseFrequency" dur="60s" values="0.02;0.005;0.02" repeatCount="indefinite"/>
+            </feTurbulence>
+            <feDisplacementMap in="SourceGraphic" scale="50"></feDisplacementMap>          
+        </filter>
+    </svg>
     <div class="card-stack">
-        <img *ngFor="let c of [0,1,2,3]; let i = index;" [ngStyle]="{'right.px': i * 7, 'top.px': -i * 5}" src="/assets/img/cards/card_cover.png" alt="">
-        <img (click)="takeCard()" class="top-card" style="right: 28px; top: -20px" src="/assets/img/cards/card_cover.png" alt="">
-        <img (click)="takeCard()" *ngIf="pickCardAnimation" class="pick-Card" style="right: 28px; top: -20px" src="/assets/img/cards/hearts_12.png" alt="">
+        <img *ngFor="let c of [0,1,2,3]; let i = index;" [ngStyle]="{'right.px': i * 7, 'top.px': -i * 5}"
+            src="/assets/img/cards/card_cover.png">
+        <img (click)="takeCard()" class="top-card" style="right: 25px; top: -20px"
+            src="/assets/img/cards/card_cover.png">
+        <img class="played-card" *ngFor="let card of game.playedCards" src="/assets/img/cards/{{ card }}.png">
+        <img (click)="takeCard()" *ngIf="pickCardAnimation" class="pick-Card" style="right: 28px; top: -20px"
+            src="/assets/img/cards/{{ currentCard }}.png">
     </div>
 </div>

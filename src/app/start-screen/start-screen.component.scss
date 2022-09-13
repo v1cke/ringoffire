@@ -34,38 +34,110 @@
     0% {
         filter: hue-rotate(0deg);
     }
+
     100% {
         filter: hue-rotate(360deg);
     }
 }
 
-.starttext {
-    z-index: 5;
+.svg-filter{
+    display: none;
+}
+
+button {
+    padding: 1rem;
+    font-size: 1.5rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 25px;
+    color: white;
     position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    color: #2ef307;
-    font-size: 28px;
-    text-transform: uppercase;
-    &:hover {
-        cursor: pointer;
-        text-shadow: 0 0 15px #09ecec, 0 0 25px #09ecec;
-        filter: brightness(3);
+    bottom: 25%;
+    background-color: #ee4f27;
+    z-index: 3;
+    filter: url('#gooey');
+
+    .bubbles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
     }
 }
 
-.title-animation {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 1200px;
-    height: 1200px;
-    filter: url(#wave) blur(1px);
+.startgametext{
+    z-index: 5;
 }
 
-svg {
-    width: 0;
-    height: 0;
+.bubble {
+    background-color: #ee4f27;
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    z-index: 2;
+
+    @for $bubble from 1 through 10 {
+        &:nth-child(#{$bubble}) {
+            $size: 20px;
+            left: (random(150) + 5) +px;
+            width: $size;
+            height: $size;
+            animation: move-#{$bubble} #{3 + $bubble*0.02}s infinite;
+            animation-delay: #{$bubble*0.2}s;
+
+            @for $bubble from 1 through 10 {
+                @keyframes move-#{$bubble} {
+                    0% {
+                        transform: translate(0, 0)
+                    }
+
+                    99% {
+                        transform: translate(0, -(random(80) + 50)+px)
+                    }
+
+                    100% {
+                        transform: translate(0, 0); 
+                        opacity: 0
+                    }
+                }
+            }
+        }
+    }
 }
+
+
+
+        .starttext {
+            z-index: 5;
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            color: #2ef307;
+            font-size: 28px;
+            text-transform: uppercase;
+
+            &:hover {
+                cursor: pointer;
+                text-shadow: 0 0 15px #09ecec, 0 0 25px #09ecec;
+                filter: brightness(3);
+            }
+        }
+
+        .title-animation {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 1200px;
+            height: 1200px;
+            filter: url(#wave) blur(1px);
+        }
+
+        svg {
+            width: 0;
+            height: 0;
+        }
