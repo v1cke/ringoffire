@@ -25,7 +25,7 @@
     left: 100px;
     right: 100px;
     bottom: 100px;
-    border: 20px solid #fff;
+    border: 50px solid #fff;
     border-radius: 50%;
     box-shadow: 0 0 50px #0f0,
                 inset 0 0 50px #0f0;
@@ -40,7 +40,7 @@
     left: 100px;
     right: 100px;
     bottom: 100px;
-    border: 20px solid #fff;
+    border: 50px solid #fff;
     border-radius: 50%;
     box-shadow: 0 0 10px #fff,
                 inset 0 0 20px #fff;
@@ -129,4 +129,18 @@ svg{
     position: absolute;
     right: 2%;
     z-index: 5;
+}
+
+.btn-add{
+    position: absolute;
+    right: 32px;
+    bottom: 32px;
+}
+
+.pin-bottom{
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    margin-left: -250px;
+    right: 200px;
 }

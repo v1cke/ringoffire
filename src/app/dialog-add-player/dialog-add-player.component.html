@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>Add new player</h1>
+<div mat-dialog-content>
+  <p>Please enter your name</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="name">
+  </mat-form-field>
+</div>
+<div>
+  <label id="example-radio-group-label">Pick your favorite Avatar</label>
+  <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="avatar">
+      <mat-radio-button class="example-radio-button" *ngFor="let avatars of this.allProfileIcons; let i = index;" [value]="this.allProfileIcons[i]">
+          <img src="assets/img/player/{{  this.allProfileIcons[i]  }}.png" alt="">
+      </mat-radio-button>
+  </mat-radio-group>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [disabled]="name.length == 0" [mat-dialog-close]="name" cdkFocusInitial>Ok</button>
+</div>
