@@ -11,12 +11,12 @@
     </svg>
     <div class="card-stack">
         <img *ngFor="let c of [0,1,2,3]; let i = index;" [ngStyle]="{'right.px': i * 7, 'top.px': -i * 5}"
-            src="/assets/img/cards/card_cover_p.png">
+            src="assets/img/cards/card_cover_p.png">
         <img (click)="takeCard()" class="top-card" style="right: 25px; top: -20px"
-            src="/assets/img/cards/card_cover_p.png">
-        <img class="played-card" *ngFor="let card of game.playedCards" src="/assets/img/cards/{{ card }}.png">
+            src="assets/img/cards/card_cover_p.png">
+        <img class="played-card" *ngFor="let card of game.playedCards" src="assets/img/cards/{{ card }}.png">
         <img (click)="takeCard()" *ngIf="pickCardAnimation" class="pick-Card" style="right: 28px; top: -20px"
-            src="/assets/img/cards/{{ currentCard }}.png">
+            src="assets/img/cards/{{ currentCard }}.png">
     </div>
 </div>
 

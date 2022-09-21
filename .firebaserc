@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ring-of-fire-e30cc": {
+      "hosting": {
+        "ringoffire": [
+          "ring-of-fire-e30cc"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ring-of-fire-e30cc"
+  }
+}
