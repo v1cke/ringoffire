@@ -21,6 +21,9 @@ export class DialogAddPlayerComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * closes new player dialog
+   */
   onNoClick(){
     this.dialog.close();
   }

@@ -30,20 +30,25 @@ export class GameComponent implements OnInit {
     this.coll = collection(firestore, 'games');
   }
 
+
+  /**
+   * opens game with saved data of its ID
+   */
   ngOnInit(): void {
     this.newGame();
-
     this.route.params.subscribe(async (params) => {
       this.gameId = params['id'];
       onSnapshot(doc(this.firestore, "games", params['id']), (doc) => {
         const newGame: any = doc.data();
-        // console.log(newGame);
         this.updateGameData(newGame);
       });
     })
   }
 
 
+  /**
+   * creates new game
+   */
   newGame() {
     this.game = new Game();
   }
@@ -54,7 +59,6 @@ export class GameComponent implements OnInit {
    */
   saveGame() {
     setDoc(doc(this.coll, this.gameId), { game: this.game.toJson() });
-    // addDoc(this.coll, this.gameId), { game: this.game.toJson() };
   }
 
 
@@ -75,11 +79,14 @@ export class GameComponent implements OnInit {
   }
 
 
+  /**
+   * opens new dialog to enter playername
+   */
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent);
 
     dialogRef.afterClosed().subscribe(name => {
-      if (name && name.length > 0) {
+      if (name && name.length > 2) {
         this.game.players.push(name);
         this.saveGame();
       }
@@ -87,6 +94,10 @@ export class GameComponent implements OnInit {
   }
 
 
+  /**
+   * turns above card from stack with animation, if cards remain
+   * after card animation current player changes
+   */
   takeCard() {
     if (this.game.stack.length == 0) {
       this.gameOver = true;
@@ -94,22 +105,30 @@ export class GameComponent implements OnInit {
       if (!this.game.pickCardAnimation) {
         this.cardsAnimation();
         this.nextPlayer();
-        this.saveGame();
       }
     }
   }
+  
 
+  /**
+   * pick card from stack
+   */
   cardsAnimation(){
     this.game.currentCard = this.game.stack.pop();
-        this.game.pickCardAnimation = true;
+    this.game.pickCardAnimation = true;
   }
+  
 
+  /**
+   * changes current player after 1.5 seconds after cardanimation
+   */
   nextPlayer(){
     this.game.currentPlayer++;
-        this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
-        setTimeout(() => {
-          this.game.playedCards.push(this.game.currentCard);
-          this.game.pickCardAnimation = false;
+    this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
+    setTimeout(() => {
+      this.game.playedCards.push(this.game.currentCard);
+      this.game.pickCardAnimation = false;
+      this.saveGame();
         }, 1500);
   }
 }
