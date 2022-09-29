@@ -4,4 +4,8 @@ mat-card{
     width: 500px;
     overflow: auto;
     // display: none;
+
+    @media (max-width: 750px) {
+        width: 100%;
+    }
 }

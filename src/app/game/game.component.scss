@@ -8,14 +8,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
 
+    @media (max-width: 900px) {
+       overflow: hidden;
+       background-size: auto;;
+    }
+    
+}
 
 .circle{
     position: absolute;
     width: 900px;
     height: 900px;
     filter: url(#wavy) blur(1px);
+    
+    @media (max-width: 900px) {
+        width: 780px;
+        height: 780px;
+    }
+    @media (max-width: 600px) {
+        width: 600px;
+        height: 600px;
+    }
 }
 
 .circle:before{
@@ -87,8 +101,6 @@ svg{
     height: 0;
 }
 
-
-
 .card-stack{
     position: relative;
     img{
@@ -104,14 +116,40 @@ svg{
 }
 
 .played-card{
-    right: 28px;
+    right: -28px;
     top: -20px;
     transform: scale(1.5) translateX(140px) translateY(-180px) rotate(-10deg);
+    
+    @media (max-width: 750px) {
+        right: -28px;
+        top: -20px;
+        transform: scale(1.0) translateX(140px) translateY(-180px) rotate(-10deg);
+    }
 }
 
 .pick-Card{
     animation: pick-card-animation 1s ease-in-out;
     transform: scale(1.5) translateX(140px) translateY(-180px) rotate(-10deg);
+
+    @media (max-width: 750px) {
+        transform: scale(1.0) translateX(140px) translateY(-180px) rotate(-10deg);
+
+        @keyframes pick-card-animation {
+            0% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.2);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1.1) translateX(140px) translateY(-180px) rotate(-10deg);
+            }
+        }
+
+    }
 }
 
 @keyframes pick-card-animation {
@@ -129,16 +167,35 @@ svg{
     }
 }
 
-.player-position {
-    position: absolute;
-    right: 0;
-    z-index: 2;
-}
+    .scroll-container{
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 2;
+        overflow-y:auto;
+        max-height: 300px;
+        display: flex;
+        flex-direction: column;
+
+        app-player{
+            margin-top: 16px;
+        }
+
+        .player-position {
+            left: 0;
+            z-index: 2;
+        }
+    }
 
 .btn-add{
     position: absolute;
     right: 32px;
     bottom: 32px;
+    
+    @media (max-width: 750px){
+        right: 16px;
+        bottom: 16px;
+    }
 }
 
 .pin-bottom{
@@ -147,4 +204,11 @@ svg{
     left: 50%;
     margin-left: -250px;
     right: 200px;
+    
+    @media (max-width: 750px) {
+        bottom: 0;
+        left: 0;
+        right: 120px;
+        margin-left: 0;
+    }
 }

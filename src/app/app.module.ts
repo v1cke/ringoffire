@@ -32,7 +32,7 @@ import { MatRadioModule } from '@angular/material/radio';
     GameComponent,
     PlayerComponent,
     DialogAddPlayerComponent,
-    GameInfoComponent
+    GameInfoComponent,
   ],
   imports: [
     BrowserModule,

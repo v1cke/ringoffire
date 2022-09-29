@@ -8,15 +8,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class DialogAddPlayerComponent implements OnInit {
   name = '';
-  // avatar: string = '';
-  // allProfileIcons: any = [];
-  // nameAndAvatar: any = [];
 
-  constructor(private dialog: MatDialogRef<DialogAddPlayerComponent>) {
-    // for (let i = 1; i<5; i++) {
-    //   this.allProfileIcons.push(`${i}`)
-    // }
-   }
+  constructor(private dialog: MatDialogRef<DialogAddPlayerComponent>) {}
 
   ngOnInit(): void {
   }
@@ -27,13 +20,5 @@ export class DialogAddPlayerComponent implements OnInit {
   onNoClick(){
     this.dialog.close();
   }
-
-  //  /**
-  //  * saving the variables in an array
-  //  */
-  //   mergevalues() {
-  //     this.nameAndAvatar[0] = (this.name);
-  //     this.nameAndAvatar[1] = (this.avatar);
-  //   }
 
 }

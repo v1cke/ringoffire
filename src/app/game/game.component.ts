@@ -100,11 +100,15 @@ export class GameComponent implements OnInit {
    */
   takeCard() {
     if (this.game.stack.length == 0) {
+      deleteDoc(doc(this.coll, this.gameById));
       this.gameOver = true;
+      this.restart();
     } else if (this.game.players.length > 1) {
       if (!this.game.pickCardAnimation) {
         this.cardsAnimation();
-        this.nextPlayer();
+        setTimeout(() => {
+          this.nextPlayer();
+        }, 1000);
       }
     }
   }
@@ -116,6 +120,8 @@ export class GameComponent implements OnInit {
   cardsAnimation(){
     this.game.currentCard = this.game.stack.pop();
     this.game.pickCardAnimation = true;
+    console.log('cards left on stack:', this.game.stack.length);
+    
   }
   
 
@@ -130,5 +136,13 @@ export class GameComponent implements OnInit {
       this.game.pickCardAnimation = false;
       this.saveGame();
         }, 1500);
+  }
+
+
+  restart(){
+    setTimeout(() => {
+      this.router.navigateByUrl('');
+    }, 5000);
+    
   }
 }
