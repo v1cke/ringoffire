@@ -24,7 +24,6 @@ export class GameComponent implements OnInit {
   gameId: string;
   coll: any;
   gameOver: boolean = false;
-  gameById: any;
 
   constructor(private firestore: Firestore, public dialog: MatDialog, private router: Router, private route: ActivatedRoute) {
     this.coll = collection(firestore, 'games');
@@ -100,7 +99,6 @@ export class GameComponent implements OnInit {
    */
   takeCard() {
     if (this.game.stack.length == 0) {
-      deleteDoc(doc(this.coll, this.gameById));
       this.gameOver = true;
       this.restart();
     } else if (this.game.players.length > 1) {
@@ -113,7 +111,7 @@ export class GameComponent implements OnInit {
     }
   }
   
-
+  
   /**
    * pick card from stack
    */
@@ -124,7 +122,7 @@ export class GameComponent implements OnInit {
     
   }
   
-
+  
   /**
    * changes current player after 1.5 seconds after cardanimation
    */
@@ -135,12 +133,13 @@ export class GameComponent implements OnInit {
       this.game.playedCards.push(this.game.currentCard);
       this.game.pickCardAnimation = false;
       this.saveGame();
-        }, 1500);
+    }, 1500);
   }
-
-
+  
+  
   restart(){
     setTimeout(() => {
+      deleteDoc(doc(this.coll, this.gameId));
       this.router.navigateByUrl('');
     }, 5000);
     
